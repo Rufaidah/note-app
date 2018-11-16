@@ -4,6 +4,42 @@
 	<title>Note App</title>
 </head>
 <body>
+	<p><b>NOTE</b></p>
+	<div id="app">
+		<div>
+			<b>{{item}} </br></b>
+			{{sub_item}}</br>
 
+			<p>Title :</p><input type="text" v-model="item"></br>
+			<p>Content :</p><input type="text" v-model="sub_item"></br></br>
+			<input type="button" value="Add Item"></br>
+		</div>
+
+		<p v-if="items.lenght || sub_item.length == 0">No item</p>
+		<ul>
+			<li v-for="item in items"> <b>{{item.title}}</b> - <a href="#">remove</a>
+				<p v-for="sub_item in items">{{sub_item.content}}</p>
+			</li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el: '#app',
+			data: {
+				items: [],
+				item: '',
+				sub_item: ''
+			},
+			created(){
+				axios.get('http://localhost:1337/note').then((response) => {
+					console.log(response.data)
+					this.items = response.data
+				})
+			}
+		})
+	</script>
 </body>
 </html>
