@@ -17,8 +17,9 @@
 
 		<p v-if="items.lenght || sub_item.length == 0">No item</p>
 		<ul>
-			<li v-for="item in items"> <b>{{item.title}}</b> - <a href="#">remove</a>
-				<p v-for="sub_item in items">{{sub_item.content}}</p>
+			<li v-for="item in items"> 
+				<b>{{ item.title }}</b> - <a href="#">remove</a>
+				<p>{{ item.content }}</p>
 			</li>
 		</ul>
 	</div>
